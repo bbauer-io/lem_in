@@ -6,7 +6,7 @@
 #    By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/26 07:44:39 by bbauer            #+#    #+#              #
-#    Updated: 2017/05/26 07:44:39 by bbauer           ###   ########.fr        #
+#    Updated: 2017/05/26 08:07:57 by bbauer           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ LIBDIR = ./libft/
 FTPFDIR = ./ft_printf/
 INCDIR = ./include/
 
-.PHONY: $(NAME), all, clean, fclean, re, $(LIBFT)
+.PHONY: all, clean, fclean, re
 
 all: $(LIBFT) $(FT_PRINTF) $(NAME)
 
@@ -49,7 +49,7 @@ $(FT_PRINTF): $(LIBFT)
 clean:
 	@echo "Cleaning lem_in"
 	@rm -rf $(OBJDIR)
-	@rm -f lem_in_debug.dSYM_ 
+	@rm -f lem_in_debug.dSYM
 	@rm -rf lem_in_debug.dSYM
 	@rm -f lem_in_leakcheck
 	@rm -rf lem_in_leakcheck.dSYM
@@ -58,7 +58,7 @@ clean:
 
 fclean: clean
 	@echo "FCleaning lem_in"
-	@rm -f $(NAME) checker
+	@rm -f $(NAME)
 	@make -C $(LIBDIR) fclean
 	@make -C $(FTPFDIR) fclean
 
