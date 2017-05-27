@@ -6,7 +6,7 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 07:44:39 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/26 15:20:12 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/27 10:22:44 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			main(void)
 	ft_bzero(&control, sizeof(t_control));
 	if (read_map(&rooms, &control) && !control.map_has_anomaly)
 	{
-		print_read_results(rooms, &control);
+		print_map_debug(rooms, &control);
 		if (control.ant_count > 0 && control.start && control.end)
 		{
 //			generate_ants(&ants);

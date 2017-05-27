@@ -6,7 +6,7 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 07:44:39 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/26 22:07:43 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/27 10:24:21 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ void				process_commands(t_room *room, t_control *control);
 ** For testing only.
 */
 
-void				print_read_results(t_room **rooms, t_control *control);
+void				print_map_debug(t_room **rooms, t_control *control);
 
 #endif
