@@ -6,13 +6,13 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 08:44:31 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/26 13:38:50 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/26 14:12:37 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
 
-static void		read_room(t_room **rooms, char *line, char ***commands,
+static void		read_room(t_room ***rooms, char *line, char ***commands,
 														t_control *control)
 {
 	char	**arr;
@@ -21,7 +21,7 @@ static void		read_room(t_room **rooms, char *line, char ***commands,
 	arr = ft_strtok(line, " ");
 	if (!arr || !line_is_numeric(arr[1]) || !line_is_numeric(arr[2])
 		|| ft_char_count(line, ' ') != 2 || *(ft_strchr(line, ' ') + 1) == ' '
-		|| *line == 'L' || control->has_tunnels || room_search(rooms, arr[0]))
+		|| *line == 'L' || control->has_tunnels || room_search(*rooms, arr[0]))
 	{
 		control->map_has_anomaly = 1;
 		return ;
@@ -34,9 +34,10 @@ static void		read_room(t_room **rooms, char *line, char ***commands,
 	if (commands && *commands && **commands)
 	{
 		new_room->commands = *commands;
+		process_commands(new_room, control);
 		*commands = NULL;
 	}
-	add_room(rooms, new_room);
+	add_room(*rooms, new_room);
 }
 
 static void		read_tunnel(t_room **rooms, char *line, t_control *control)
@@ -65,7 +66,7 @@ static void		read_tunnel(t_room **rooms, char *line, t_control *control)
 	control->has_tunnels = 1;
 }
 
-int				read_map(t_room **rooms, t_ant **ants, t_control *control)
+int				read_map(t_room ***rooms, t_control *control)
 {
 	char	*line;
 	char	**commands;
@@ -82,7 +83,7 @@ int				read_map(t_room **rooms, t_ant **ants, t_control *control)
 		else if (ft_strchr(line, ' '))
 			read_room(rooms, line, &commands, control);
 		else if (ft_strchr(line, '-'))
-			read_tunnel(rooms, line, control);
+			read_tunnel(*rooms, line, control);
 		if (control->map_has_anomaly || control->ant_count < 1)
 			return (0);
 		ft_strdel(&line);

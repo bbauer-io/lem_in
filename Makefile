@@ -6,7 +6,7 @@
 #    By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/26 07:44:39 by bbauer            #+#    #+#              #
-#    Updated: 2017/05/26 08:07:57 by bbauer           ###   ########.fr        #
+#    Updated: 2017/05/26 15:27:43 by bbauer           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,12 @@ FT_PRINTF = ./ft_printf/ft_printf.a
 CFLAGS = -Wall -Wextra -Werror
 DEBUGFLAGS =  -fsanitize=address -g -o lem_in_debug
 LEAKCHECKFLAGS = -g -o lem_in_leakcheck
-SRCF = 
+SRCF = lem_in.c \
+		print_read_results.c \
+		process_commands.c \
+		read_map.c \
+		read_tools.c \
+		room_search.c \
 
 SRC = $(addprefix $(SRCDIR),$(SRCF))
 OBJ = $(addprefix $(OBJDIR),$(SRCF:.c=.o))
@@ -49,7 +54,7 @@ $(FT_PRINTF): $(LIBFT)
 clean:
 	@echo "Cleaning lem_in"
 	@rm -rf $(OBJDIR)
-	@rm -f lem_in_debug.dSYM
+	@rm -f lem_in_debug
 	@rm -rf lem_in_debug.dSYM
 	@rm -f lem_in_leakcheck
 	@rm -rf lem_in_leakcheck.dSYM
@@ -70,3 +75,4 @@ debug: $(LIBFT) $(FT_PRINTF)
 
 leakcheck: $(LIBFT) $(FT_PRINTF)
 	@echo "Compiling lem_in for leak checks with valgrind"
+

@@ -6,7 +6,7 @@
 #    By: bbauer <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 16:20:35 by bbauer            #+#    #+#              #
-#    Updated: 2017/05/24 21:34:22 by bbauer           ###   ########.fr        #
+#    Updated: 2017/05/26 15:21:07 by bbauer           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRC = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 	  ft_tab_ncat.c ft_tab_new.c ft_tab_rem_one.c ft_print_tab.c ft_strcspn.c \
 	  ft_strbeginequ.c ft_smallest_int.c ft_tab_len.c ft_ints_are_sorted.c \
 	  ft_print_arr.c ft_ints_are_rev_sorted.c ft_int_sort.c ft_int_sort_rev.c \
-	  ft_atol.c
+	  ft_atol.c ft_char_count.c
 
 OBJDIR = ./obj/
 OPT = $(SRC:.c=.o)
