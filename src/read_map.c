@@ -6,7 +6,7 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 08:44:31 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/26 14:12:37 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/26 21:46:05 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void		read_room(t_room ***rooms, char *line, char ***commands,
 		return ;
 	}
 	new_room = (t_room *)malloc(sizeof(t_room));
+	ft_bzero(new_room, sizeof(t_room));
 	new_room->name = ft_strdup(arr[0]);
 	new_room->x_coord = ft_atoi(arr[1]);
 	new_room->y_coord = ft_atoi(arr[2]);
@@ -37,7 +38,7 @@ static void		read_room(t_room ***rooms, char *line, char ***commands,
 		process_commands(new_room, control);
 		*commands = NULL;
 	}
-	add_room(*rooms, new_room);
+	*rooms = add_room(*rooms, new_room);
 }
 
 static void		read_tunnel(t_room **rooms, char *line, t_control *control)
@@ -61,9 +62,29 @@ static void		read_tunnel(t_room **rooms, char *line, t_control *control)
 		control->map_has_anomaly = 1;
 		return ;
 	}
-	add_room(left_room->connections, right_room);
-	add_room(right_room->connections, left_room);
+	left_room->connections = add_room(left_room->connections, right_room);
+	right_room->connections = add_room(right_room->connections, left_room);
 	control->has_tunnels = 1;
+}
+
+static int		read_ant_count(t_control *control)
+{
+	char	*line;
+
+	line = NULL;
+	if (get_next_line(0, &line) && line_is_numeric(line) && ft_atoi(line) > 0)
+	{
+		control->ant_count = ft_atoi(line);
+		ft_putstr(line);
+		ft_putchar('\n');
+		ft_strdel(&line);
+		return (1);
+	}
+	else
+	{
+		control->map_has_anomaly = 1;
+		return (0);
+	}
 }
 
 int				read_map(t_room ***rooms, t_control *control)
@@ -71,11 +92,13 @@ int				read_map(t_room ***rooms, t_control *control)
 	char	*line;
 	char	**commands;
 
+	line = NULL;
 	commands = NULL;
-	if (get_next_line(0, &line) && line_is_numeric(line) && ft_atoi(line) > 0)
-		control->ant_count = ft_atoi(line);
+	read_ant_count(control);
 	while (get_next_line(0, &line))
 	{
+		ft_putstr(line);
+		ft_putchar('\n');
 		if (*line == '#' && line[1] != '#')
 			;
 		else if (*line == '#' && line[1] == '#')
