@@ -6,7 +6,7 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 07:44:39 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/26 15:19:06 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/26 22:07:43 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct		s_control
 	int				ant_count;
 	t_room			*start;
 	t_room			*end;
+	t_bool			has_rooms;
 	t_bool			has_tunnels;
 	t_bool			found_path;
 	t_bool			map_has_anomaly;
