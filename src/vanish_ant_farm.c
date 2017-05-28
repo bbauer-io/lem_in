@@ -6,7 +6,7 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 17:59:26 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/27 18:35:09 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/27 22:24:13 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,9 @@ static void		vanish_rooms(t_room ***rooms)
 		{
 			if ((**rooms)->connections)
 				free((**rooms)->connections);
-			if ((**rooms)->occupant)
-				free((**rooms)->occupant);
 			if ((**rooms)->name)
 				free((**rooms)->name);
-			while((**rooms)->commands && (*(**rooms)->commands))
+			while ((**rooms)->commands && (*(**rooms)->commands))
 				free((*(**rooms)->commands++));
 			free(*(*rooms)++);
 		}

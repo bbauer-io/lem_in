@@ -6,7 +6,7 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 11:12:55 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/27 15:10:00 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/27 22:13:59 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_ant		**summon_ants(t_control *control)
 			return (NULL);
 		stoa = ft_itoa_base(serial_no, 16);
 		ants[serial_no]->serial = serial_no;
+		ants[serial_no]->location = control->start;
 		ants[serial_no]->name = ft_strnew(2 + ft_strlen(stoa));
 		ft_strcat(ants[serial_no]->name, "Lx");
 		ft_strcat(ants[serial_no]->name, stoa);

@@ -6,7 +6,7 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 07:44:39 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/27 18:35:22 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/27 22:29:43 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ int				main(int argc, char **argv)
 			&& control.ant_count > 0 && control.start && control.end)
 	{
 		ft_print_tab(map);
-		ft_tab_del(&map);
 		ants = summon_ants(&control);
+		control.start->occupant_count = control.ant_count;
 		mark_shortest_path(control.end, &control);
 		if (control.debug)
 			print_map_debug(rooms);
-		ants_go_marching(rooms, ants, &control);
+		ants_go_marching(ants, &control);
 		vanish_ant_farm(&rooms, &ants, &map);
 	}
 	else

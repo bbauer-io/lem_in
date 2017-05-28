@@ -6,7 +6,7 @@
 #    By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/26 07:44:39 by bbauer            #+#    #+#              #
-#    Updated: 2017/05/27 10:24:39 by bbauer           ###   ########.fr        #
+#    Updated: 2017/05/27 17:59:14 by bbauer           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,17 @@ FT_PRINTF = ./ft_printf/ft_printf.a
 CFLAGS = -Wall -Wextra -Werror
 DEBUGFLAGS =  -fsanitize=address -g -o lem_in_debug
 LEAKCHECKFLAGS = -g -o lem_in_leakcheck
-SRCF = lem_in.c \
-		print_map_debug.c \
+SRCF = ants_go_marching.c \
+		lem_in.c \
+		mark_shortest_path.c \
+		print_debug.c \
 		process_commands.c \
+		queue_tools.c \
 		read_map.c \
 		read_tools.c \
 		room_search.c \
+		summon_ants.c \
+		vanish_ant_farm.c \
 
 SRC = $(addprefix $(SRCDIR),$(SRCF))
 OBJ = $(addprefix $(OBJDIR),$(SRCF:.c=.o))
