@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   room_search.c                                      :+:      :+:    :+:   */
+/*   ants_go_marching.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/26 13:08:40 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/27 10:49:58 by bbauer           ###   ########.fr       */
+/*   Created: 2017/05/27 17:44:10 by bbauer            #+#    #+#             */
+/*   Updated: 2017/05/27 17:50:22 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
 
-/*
-** Searches the room list one with a matchin name.
-*/
-
-t_room		*room_search(t_room **rooms, char *search)
+static void	report_locations(t_ant **ants, t_control *control)
 {
-	while (rooms && *rooms)
-	{
-		if (ft_strequ(search, (*rooms)->name))
-			return (*rooms);
-		rooms++;
-	}
-	return (NULL);
+
+}
+
+void		ants_go_marching(t_room **rooms, t_ant **ants, t_control *control)
+{
+	
 }

@@ -6,7 +6,7 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 13:44:57 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/26 14:03:00 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/27 10:26:43 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void		is_start(t_room *room, t_control *control)
 	}
 	else
 		control->map_has_anomaly = 1;
-
 }
 
 static void		is_end(t_room *room, t_control *control)
