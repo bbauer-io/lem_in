@@ -3,4 +3,6 @@
 start 0 0
 ##end
 end 1 1
-start-end
+middle 0 1
+start-middle
+middle-end

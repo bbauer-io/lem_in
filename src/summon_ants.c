@@ -26,12 +26,12 @@ t_ant		**summon_ants(t_control *control)
 		return (NULL);
 	ants[control->ant_count] = NULL;
 	serial_no = 0;
-	while (ants[serial_no])
+	while (serial_no < control->ant_count)
 	{
-		ants[serial_no] = (t_ant *)malloc(sizeof(t_ant));
-		if (!ants[serial_no])
+		if (!(ants[serial_no] = (t_ant *)malloc(sizeof(t_ant))))
 			return (NULL);
 		stoa = ft_itoa_base(serial_no, 16);
+		ants[serial_no]->moving = 0;
 		ants[serial_no]->serial = serial_no;
 		ants[serial_no]->location = control->start;
 		ants[serial_no]->name = ft_strnew(2 + ft_strlen(stoa));

@@ -50,12 +50,6 @@ typedef struct		s_ant
 	t_bool			moving;
 }					t_ant;
 
-typedef struct		s_com
-{
-	char			*com;
-	s_com			*next;
-}					t_com;
-
 /*
 ** Lem-in functions
 */

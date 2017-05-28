@@ -58,9 +58,8 @@ static t_room	*choose_best_move(t_ant *ant)
 	path = *paths;
 	while (path)
 	{
-		if (!ant->location->is_end && (!best_move
-						|| (path->steps_to_exit < ant->location->steps_to_exit
-						&& path->steps_to_exit < shortest)))
+		if (!best_move || (path->steps_to_exit < ant->location->steps_to_exit
+						&& path->steps_to_exit < shortest))
 			if (!path->is_occupied || path->is_end)
 			{
 				shortest = path->steps_to_exit;

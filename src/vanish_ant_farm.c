@@ -12,41 +12,27 @@
 
 #include "../include/lem_in.h"
 
-static void		vanish_commands(t_com *commands)
-{
-	t_com	*tmp;
-
-	while (commands)
-	{
-		tmp = commands->next;
-		free(commands);
-		commands = tmp;
-		if (commands)
-			tmp = commands->next;
-	}
-}
-
 static void		vanish_rooms(t_room ***rooms)
 {
-	int		i;
-	t_com	*tmp;
+	t_room	**tmp;
 
 	if (rooms && *rooms)
 	{
-		i = 0;
+		tmp = *rooms;
 		while (**rooms)
 		{
 			if ((**rooms)->connections)
 				free((**rooms)->connections);
 			if ((**rooms)->name)
 				ft_strdel(&(**rooms)->name);
-			tmp = ((**rooms)->commands;
+			if ((**rooms)->commands)
+				ft_tab_del(&(**rooms)->commands);
 			while ((**rooms)->commands && (*(**rooms)->commands))
 				ft_strdel(&(*(**rooms)->commands++));
-			free(*(*rooms)++);
+			free(*((*rooms)++));
 		}
-		free(*rooms);
-		*rooms = NULL;
+		free(tmp);
+		tmp = NULL;
 	}
 }
 
