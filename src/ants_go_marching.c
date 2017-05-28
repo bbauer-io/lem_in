@@ -91,6 +91,6 @@ void			ants_go_marching(t_ant **ants, t_control *control)
 		report_locations(ants, control);
 	}
 	if (control->debug)
-		ft_printf("Moved %d of %d ants to end.", control->end->occupant_count,
+		ft_printf("Moved %d of %d ants to end.\n", control->end->occupant_count,
 															control->ant_count);
 }

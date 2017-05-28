@@ -21,6 +21,32 @@ static void		init_to_null(t_room ***rooms, t_ant ***ants, char ***map,
 	ft_bzero(control, sizeof(t_control));
 }
 
+static void		no_path_error(t_room ***rooms, t_ant ***ants, char ***map,
+															t_control *control)
+{
+	if (control->debug)
+		ft_putchar('\n');
+	ft_putstr("Map Error! There is no path to the end!\n");
+	vanish_ant_farm(rooms, ants, map);
+	exit(0);
+}
+
+static void		begin_computations(t_room ***rooms, t_ant ***ants, char ***map,
+															t_control *control)
+{
+	*ants = summon_ants(control);
+	control->start->occupant_count = control->ant_count;
+	mark_shortest_path(control->end, control);
+	if (control->debug)
+		print_map_debug(*rooms);
+	if (!control->found_path)
+		no_path_error(rooms, ants, map, control);
+	ft_print_tab(*map);
+	ft_putchar('\n');
+	ants_go_marching(*ants, control);
+	vanish_ant_farm(rooms, ants, map);
+}
+
 int				main(int argc, char **argv)
 {
 	t_control	control;
@@ -33,17 +59,8 @@ int				main(int argc, char **argv)
 		control.debug = 1;
 	if ((map = read_map(&rooms, &control, map)) && !control.map_has_anomaly
 			&& control.ant_count > 0 && control.start && control.end)
-	{
-		ft_print_tab(map);
-		ants = summon_ants(&control);
-		control.start->occupant_count = control.ant_count;
-		mark_shortest_path(control.end, &control);
-		if (control.debug)
-			print_map_debug(rooms);
-		ants_go_marching(ants, &control);
-		vanish_ant_farm(&rooms, &ants, &map);
-	}
+		begin_computations(&rooms, &ants, &map, &control);
 	else
-		ft_putstr("Map error!\n");
+		ft_putstr("Map Error!\n");
 	return (0);
 }
