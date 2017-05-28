@@ -37,8 +37,9 @@ static void		report_locations(t_ant **ants, t_control *control)
 static void		move_ant(t_ant *ant, t_room *move_to)
 {
 	ant->moving = 1;
-	ant->location->is_occupied = 0;
 	ant->location->occupant_count--;
+	if (ant->location->occupant_count == 0)
+		ant->location->is_occupied = 0;
 	ant->location = move_to;
 	ant->location->is_occupied = 1;
 	ant->location->occupant_count++;
@@ -57,9 +58,10 @@ static t_room	*choose_best_move(t_ant *ant)
 	path = *paths;
 	while (path)
 	{
-		if (!best_move || (path->steps_to_exit < ant->location->steps_to_exit
-										&& path->steps_to_exit < shortest))
-			if (!path->is_occupied || path->is_start)
+		if (!ant->location->is_end && (!best_move
+						|| (path->steps_to_exit < ant->location->steps_to_exit
+						&& path->steps_to_exit < shortest)))
+			if (!path->is_occupied || path->is_end)
 			{
 				shortest = path->steps_to_exit;
 				best_move = path;

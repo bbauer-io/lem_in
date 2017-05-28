@@ -53,7 +53,7 @@ typedef struct		s_ant
 typedef struct		s_com
 {
 	char			*com;
-	char			*next;
+	s_com			*next;
 }					t_com;
 
 /*
