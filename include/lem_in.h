@@ -65,6 +65,7 @@ t_room				**queue_rem_one(t_room **src, size_t rem);
 void				ants_go_marching(t_ant **ants, t_control *control);
 void				vanish_ant_farm(t_room ***rooms, t_ant ***ants,
 														char ***map);
+void				vanish_rooms(t_room ***rooms);
 
 /*
 ** Lem-in debugging functions

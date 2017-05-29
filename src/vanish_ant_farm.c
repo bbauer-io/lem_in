@@ -12,7 +12,7 @@
 
 #include "../include/lem_in.h"
 
-static void		vanish_rooms(t_room ***rooms)
+void			vanish_rooms(t_room ***rooms)
 {
 	t_room	**tmp;
 
@@ -58,4 +58,5 @@ void			vanish_ant_farm(t_room ***rooms, t_ant ***ants, char ***map)
 	if (rooms)
 		vanish_rooms(rooms);
 	*map = NULL;
+//	get_next_line(-42, NULL);
 }

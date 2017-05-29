@@ -66,6 +66,7 @@ static void		read_tunnel(t_room **rooms, char *line, t_control *control)
 	left_room->connections = add_room(left_room->connections, right_room);
 	right_room->connections = add_room(right_room->connections, left_room);
 	control->has_tunnels = 1;
+	ft_tab_del(&arr);
 }
 
 static int		read_ant_count(char *line, t_control *control)
@@ -106,12 +107,15 @@ char			**read_map(t_room ***rooms, t_control *control, char **map)
 {
 	char	*line;
 	char	**commands;
+	char	**tmp;
 
 	line = NULL;
 	commands = NULL;
 	while (get_next_line(0, &line))
 	{
+		tmp = map;
 		map = ft_tab_add_one(map, line);
+		ft_tab_del(&tmp);
 		commands = evaluate_line(rooms, control, line, commands);
 		if (control->map_has_anomaly)
 		{

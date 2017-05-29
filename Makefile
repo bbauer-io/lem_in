@@ -80,4 +80,4 @@ debug: $(LIBFT) $(FT_PRINTF)
 
 leakcheck: $(LIBFT) $(FT_PRINTF)
 	@echo "Compiling lem_in for leak checks with valgrind"
-
+	$(CC) $(CFLAGS) $(SRC) $(FT_PRINTF) $(LIBFT) -I$(INCDIR) $(LEAKCHECKFLAGS)

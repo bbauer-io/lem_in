@@ -45,5 +45,6 @@ t_room			**add_room(t_room **src_tab, t_room *new_item)
 	ft_memcpy(new_tab, src_tab, sizeof(t_room *) * tab_len);
 	new_tab[tab_len] = new_item;
 	new_tab[++tab_len] = NULL;
+	//vanish_rooms(&src_tab);
 	return (new_tab);
 }

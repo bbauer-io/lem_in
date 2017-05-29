@@ -15,6 +15,21 @@
 #define LIST_STR (char*)fd_node->content
 #define NL ft_strcspn(LIST_STR, '\n')
 
+static void		purge_everything(t_list **fd_node)
+{
+	t_list			*next;
+
+	while (fd_node && *fd_node)
+	{
+		next = (*fd_node)->next;
+		if ((*fd_node)->content)
+			free((*fd_node)->content);
+		free(*fd_node);
+		*fd_node = next;
+	}
+	*fd_node = NULL;
+}
+
 static t_list	*find_fd(int fd)
 {
 	static t_list	*master_list;
@@ -40,9 +55,11 @@ int				get_next_line(const int fd, char **line)
 	char	*buff;
 	char	*tmp;
 
-	buff = ft_strnew(BUFF_SIZE);
+	if (fd == -42)
+		purge_everything(&fd_node);
 	if (fd < 0 || line == NULL || read(fd, *line, 0) < 0)
 		return (-1);
+	buff = ft_strnew(BUFF_SIZE);
 	fd_node = find_fd(fd);
 	while (!ft_strchr(LIST_STR, '\n') && (read(fd, buff, BUFF_SIZE)))
 	{
