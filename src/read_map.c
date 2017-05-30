@@ -86,10 +86,16 @@ static int		read_ant_count(char *line, t_control *control)
 static char		**evaluate_line(t_room ***rooms, t_control *control, char *line,
 														char **commands)
 {
+	char	**tmp;
+
 	if (*line == '#' && line[1] != '#')
 		;
 	else if (*line == '#' && line[1] == '#')
+	{
+		tmp = commands;
 		commands = ft_tab_add_one(commands, &line[2]);
+		free(tmp);
+	}
 	else if (control->ant_count < 1 && !control->has_rooms
 				&& !control->has_tunnels)
 		read_ant_count(line, control);
