@@ -6,20 +6,16 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 07:44:39 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/27 22:29:43 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/30 07:07:24 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
 
-static void		init_to_null(t_room ***rooms, t_ant ***ants, char ***map,
-															t_control *control)
-{
-	*map = NULL;
-	*rooms = NULL;
-	*ants = NULL;
-	ft_bzero(control, sizeof(t_control));
-}
+/*
+** Prints a message a frees all allocated memory if a path cannot be found from
+** end to start.
+*/
 
 static void		no_path_error(t_room ***rooms, t_ant ***ants, char ***map,
 															t_control *control)
@@ -30,6 +26,13 @@ static void		no_path_error(t_room ***rooms, t_ant ***ants, char ***map,
 	vanish_ant_farm(rooms, ants, map);
 	exit(0);
 }
+
+/*
+** Main control structure. After our map has been determined to be valid,
+** this function begins setting up to calculate the shortest path and from
+** end to start, then moves the ants along that path and prints their locations
+** as they move.
+*/
 
 static void		begin_computations(t_room ***rooms, t_ant ***ants, char ***map,
 															t_control *control)
@@ -47,6 +50,12 @@ static void		begin_computations(t_room ***rooms, t_ant ***ants, char ***map,
 	vanish_ant_farm(rooms, ants, map);
 }
 
+/*
+** Setup begins, a -v option is available for debugging which is parsed here.
+** If the map is invalid, print an error message, otherwise we begin the main
+** program with begin_computations().
+*/
+
 int				main(int argc, char **argv)
 {
 	t_control	control;
@@ -54,7 +63,10 @@ int				main(int argc, char **argv)
 	t_ant		**ants;
 	char		**map;
 
-	init_to_null(&rooms, &ants, &map, &control);
+	map = NULL;
+	rooms = NULL;
+	ants = NULL;
+	ft_bzero(&control, sizeof(t_control));
 	if (argc == 2 && **(++argv) == '-' && (*argv)[1] == 'v')
 		control.debug = 1;
 	if ((map = read_map(&rooms, &control, map)) && !control.map_has_anomaly

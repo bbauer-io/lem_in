@@ -6,7 +6,7 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 08:44:31 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/30 06:32:04 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/30 07:07:46 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@ static void		print_debug_info(t_room **rooms, t_control *control)
 	print_map_debug(rooms);
 	print_control_debug(control);
 }
+
+/*
+** This is where each line of the map is evaluated to determine what information
+** is contained. Lines starting with "##" are commands, "#" are comments,
+** "name 1 1" are rooms with coordinates, "name-name" pairs are connections
+** between the rooms, anything else is an anomaly and will result in an error
+** message, then end the program.
+*/
 
 static char		**evaluate_line(t_room ***rooms, t_control *control, char *line,
 														char **commands)
@@ -43,6 +51,12 @@ static char		**evaluate_line(t_room ***rooms, t_control *control, char *line,
 	ft_strdel(&line);
 	return (commands);
 }
+
+/*
+** This will read input from the map from a map file which should be placed on
+** std in (./lem_in < map). It reads one line at a time and saves the entire
+** file for printing if the entire map is determined to be valid.
+*/
 
 char			**read_map(t_room ***rooms, t_control *control, char **map)
 {

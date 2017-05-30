@@ -6,11 +6,15 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 14:22:34 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/27 17:46:57 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/30 06:39:33 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
+
+/*
+** Prints the rooms that are connected to a given room.
+*/
 
 static void	print_connections(t_room **tmp)
 {
@@ -25,6 +29,12 @@ static void	print_connections(t_room **tmp)
 			ft_putchar('\n');
 	}
 }
+
+/*
+** Prints some basic info about the map, which room is start and end, and how
+** many steps that room is from the exit (that info won't be available until
+** after it has been calculated, obviously).
+*/
 
 void		print_map_debug(t_room **rooms)
 {
@@ -46,6 +56,10 @@ void		print_map_debug(t_room **rooms)
 	}
 }
 
+/*
+** Prints the info saved in the control struct.
+*/
+
 void		print_control_debug(t_control *control)
 {
 	ft_putstr("\nControl Struct:\n");
@@ -53,6 +67,10 @@ void		print_control_debug(t_control *control)
 		control->ant_count, control->start, control->end, control->has_tunnels);
 	ft_printf("map_has_anomaly: %d\n\n", control->map_has_anomaly);
 }
+
+/*
+** Prints the names of all the ants that have been created.
+*/
 
 void		print_ants_debug(t_ant **ants)
 {

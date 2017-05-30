@@ -6,11 +6,17 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 15:14:16 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/27 17:29:55 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/30 06:50:52 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
+
+/*
+** Marks the steps to the exit on each room visited, and adds that rooms
+** connections to the queue to be examined after everything at the current depth
+** has been explored.
+*/
 
 static void		queue_connected(t_room *connected, t_room ***queue, int depth,
 															t_control *control)

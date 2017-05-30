@@ -6,11 +6,16 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 17:59:26 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/27 22:24:13 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/30 06:41:12 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
+
+/*
+** Frees an entire rooms list and any properties that have been malloced and
+** attached to it.
+*/
 
 void			vanish_rooms(t_room ***rooms)
 {
@@ -35,6 +40,11 @@ void			vanish_rooms(t_room ***rooms)
 		tmp = NULL;
 	}
 }
+
+/*
+** Frees the ants struct array, the map array, and the rooms array at the end
+** of the program.
+*/
 
 void			vanish_ant_farm(t_room ***rooms, t_ant ***ants, char ***map)
 {
