@@ -6,11 +6,17 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 08:44:31 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/27 17:36:24 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/30 06:32:04 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
+
+static void		print_debug_info(t_room **rooms, t_control *control)
+{
+	print_map_debug(rooms);
+	print_control_debug(control);
+}
 
 static char		**evaluate_line(t_room ***rooms, t_control *control, char *line,
 														char **commands)
@@ -63,9 +69,6 @@ char			**read_map(t_room ***rooms, t_control *control, char **map)
 	if (commands)
 		ft_tab_del(&commands);
 	if (control->debug)
-	{
-		print_map_debug(*rooms);
-		print_control_debug(control);
-	}
+		print_debug_info(*rooms, control);
 	return (map);
 }

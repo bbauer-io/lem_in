@@ -6,7 +6,7 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 11:22:17 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/26 13:21:17 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/30 06:29:48 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ t_room			**add_room(t_room **src_tab, t_room *new_item)
 	new_tab[tab_len] = new_item;
 	new_tab[++tab_len] = NULL;
 	free(src_tab);
-	//vanish_rooms(&src_tab);
 	return (new_tab);
 }
 
@@ -107,7 +106,7 @@ void			read_tunnel(t_room **rooms, char *line, t_control *control)
 	ft_tab_del(&arr);
 }
 
-int			read_ant_count(char *line, t_control *control)
+int				read_ant_count(char *line, t_control *control)
 {
 	if (line_is_numeric(line) && ft_atoi(line) > 0)
 	{

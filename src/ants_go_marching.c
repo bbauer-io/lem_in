@@ -6,7 +6,7 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 17:44:10 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/27 22:41:13 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/30 06:35:17 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,12 @@ static t_room	*choose_best_move(t_ant *ant)
 	}
 	return (best_move);
 }
+
+/*
+** Moves the ants throught the shortest path that was found by examining each
+** ant and its loction one at a time and moving the ant to the next step closer
+** to the end.
+*/
 
 void			ants_go_marching(t_ant **ants, t_control *control)
 {

@@ -6,7 +6,7 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 07:44:39 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/27 22:29:13 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/30 06:29:08 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int					read_ant_count(char *line, t_control *control);
 void				read_tunnel(t_room **rooms, char *line, t_control *control);
 void				read_room(t_room ***rooms, char *line, char ***commands,
 														t_control *control);
-
 
 /*
 ** Lem-in debugging functions
