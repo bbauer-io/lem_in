@@ -14,7 +14,7 @@
 
 static void		is_start(t_room *room, t_control *control)
 {
-	if (!control->start && !room->is_end && !room->is_start)
+	if (!control->start && !room->is_start)
 	{
 		room->is_start = 1;
 		control->start = room;
@@ -25,7 +25,7 @@ static void		is_start(t_room *room, t_control *control)
 
 static void		is_end(t_room *room, t_control *control)
 {
-	if (!control->end && !room->is_end && !room->is_start)
+	if (!control->end && !room->is_end)
 	{
 		room->is_end = 1;
 		control->end = room;

@@ -39,7 +39,7 @@ static void		begin_computations(t_room ***rooms, t_ant ***ants, char ***map,
 	mark_shortest_path(control->end, control);
 	if (control->debug)
 		print_map_debug(*rooms);
-	if (!control->found_path)
+	if (!control->found_path && control->start != control->end)
 		no_path_error(rooms, ants, map, control);
 	ft_print_tab(*map);
 	ft_putchar('\n');

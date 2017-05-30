@@ -44,11 +44,11 @@ all: $(LIBFT) $(FT_PRINTF) $(NAME)
 
 $(NAME): $(LIBFT) $(FT_PRINTF)
 	@echo "Compiling lem_in"
-	@$(CC) $(CFLAGS) -c -I$(INCDIR) $(SRC)
-	@mkdir -p $(OBJDIR)
-	@mv $(SRCF:.c=.o) $(OBJDIR)
-	@$(CC) $(CFLAGS) -I$(INCDIR) -I$(LIBDIR) $(OBJ) $(LIBFT) $(FT_PRINTF) -o $@
-	@echo "lem_in: SUCCESS!"
+	$(CC) $(CFLAGS) -c -I$(INCDIR) $(SRC)
+	mkdir -p $(OBJDIR)
+	mv $(SRCF:.c=.o) $(OBJDIR)
+	$(CC) $(CFLAGS) -I$(INCDIR) $(OBJ) $(LIBFT) $(FT_PRINTF) -o $@
+	echo "lem_in: SUCCESS!"
 
 $(LIBFT):
 	@make -C $(LIBDIR) all
