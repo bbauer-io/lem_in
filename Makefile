@@ -6,7 +6,7 @@
 #    By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/26 07:44:39 by bbauer            #+#    #+#              #
-#    Updated: 2017/05/30 07:30:03 by bbauer           ###   ########.fr        #
+#    Updated: 2017/05/30 09:35:23 by bbauer           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,11 +44,11 @@ all: $(LIBFT) $(FT_PRINTF) $(NAME)
 
 $(NAME): $(LIBFT) $(FT_PRINTF)
 	@echo "Compiling lem_in"
-	$(CC) $(CFLAGS) -c -I$(INCDIR) $(SRC)
-	mkdir -p $(OBJDIR)
-	mv $(SRCF:.c=.o) $(OBJDIR)
-	$(CC) $(CFLAGS) -I$(INCDIR) $(OBJ) $(LIBFT) $(FT_PRINTF) -o $@
-	echo "lem_in: SUCCESS!"
+	@$(CC) $(CFLAGS) -c -I$(INCDIR) $(SRC)
+	@mkdir -p $(OBJDIR)
+	@mv $(SRCF:.c=.o) $(OBJDIR)
+	@$(CC) $(CFLAGS) -I$(INCDIR) $(OBJ) $(LIBFT) $(FT_PRINTF) -o $@
+	@echo "lem_in: SUCCESS!"
 
 $(LIBFT):
 	@make -C $(LIBDIR) all
