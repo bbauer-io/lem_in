@@ -6,7 +6,7 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 11:22:17 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/30 06:29:48 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/30 07:48:42 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 
 int				line_is_numeric(char *line)
 {
+	if (line && *line == '-')
+		line++;
 	while (line && *line)
 		if (!ft_isdigit(*(line++)))
 			return (0);
@@ -49,62 +51,18 @@ t_room			**add_room(t_room **src_tab, t_room *new_item)
 	return (new_tab);
 }
 
-void			read_room(t_room ***rooms, char *line, char ***commands,
-														t_control *control)
+void			attach_commands_to_room(t_room *new_room, char ***commands,
+															t_control *control)
 {
-	char	**arr;
-	t_room	*new_room;
-
-	arr = ft_strtok(line, " ");
-	if (!arr || !line_is_numeric(arr[1]) || !line_is_numeric(arr[2])
-		|| ft_char_count(line, ' ') != 2 || *(ft_strchr(line, ' ') + 1) == ' '
-		|| *line == 'L' || control->has_tunnels || room_search(*rooms, arr[0]))
-	{
-		control->map_has_anomaly = 1;
-		return ;
-	}
-	new_room = (t_room *)malloc(sizeof(t_room));
-	ft_bzero(new_room, sizeof(t_room));
-	new_room->name = ft_strdup(arr[0]);
-	new_room->x_coord = ft_atoi(arr[1]);
-	new_room->y_coord = ft_atoi(arr[2]);
-	ft_tab_del(&arr);
-	if (commands && *commands && **commands)
-	{
-		new_room->commands = *commands;
-		process_commands(new_room, control);
-		*commands = NULL;
-	}
-	*rooms = add_room(*rooms, new_room);
-	control->has_rooms = 1;
+	new_room->commands = *commands;
+	process_commands(new_room, control);
+	*commands = NULL;
 }
 
-void			read_tunnel(t_room **rooms, char *line, t_control *control)
-{
-	char	**arr;
-	t_room	*left_room;
-	t_room	*right_room;
-
-	if (ft_char_count(line, '-') > 1)
-	{
-		control->map_has_anomaly = 1;
-		return ;
-	}
-	arr = ft_strsplit(line, '-');
-	left_room = NULL;
-	right_room = NULL;
-	left_room = room_search(rooms, arr[0]);
-	right_room = room_search(rooms, arr[1]);
-	if (!left_room || !right_room)
-	{
-		control->map_has_anomaly = 1;
-		return ;
-	}
-	left_room->connections = add_room(left_room->connections, right_room);
-	right_room->connections = add_room(right_room->connections, left_room);
-	control->has_tunnels = 1;
-	ft_tab_del(&arr);
-}
+/*
+** The first line of the struct should contain a number describing the number of
+** ants that are to be used. This function reads and validates that line.
+*/
 
 int				read_ant_count(char *line, t_control *control)
 {

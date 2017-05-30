@@ -6,7 +6,7 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 07:44:39 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/30 06:29:08 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/30 07:28:25 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,8 @@ void				vanish_ant_farm(t_room ***rooms, t_ant ***ants,
 														char ***map);
 void				vanish_rooms(t_room ***rooms);
 int					read_ant_count(char *line, t_control *control);
-void				read_tunnel(t_room **rooms, char *line, t_control *control);
-void				read_room(t_room ***rooms, char *line, char ***commands,
-														t_control *control);
+void				attach_commands_to_room(t_room *new_room, char ***commands,
+															t_control *control);
 
 /*
 ** Lem-in debugging functions

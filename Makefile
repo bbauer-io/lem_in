@@ -6,11 +6,11 @@
 #    By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/26 07:44:39 by bbauer            #+#    #+#              #
-#    Updated: 2017/05/27 17:59:14 by bbauer           ###   ########.fr        #
+#    Updated: 2017/05/30 07:30:03 by bbauer           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = lem_in
+NAME = lem-in
 CC = gcc
 LIBFT = ./libft/libft.a
 FT_PRINTF = ./ft_printf/ft_printf.a
