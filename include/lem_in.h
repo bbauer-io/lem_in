@@ -66,6 +66,11 @@ void				ants_go_marching(t_ant **ants, t_control *control);
 void				vanish_ant_farm(t_room ***rooms, t_ant ***ants,
 														char ***map);
 void				vanish_rooms(t_room ***rooms);
+int					read_ant_count(char *line, t_control *control);
+void				read_tunnel(t_room **rooms, char *line, t_control *control);
+void				read_room(t_room ***rooms, char *line, char ***commands,
+														t_control *control);
+
 
 /*
 ** Lem-in debugging functions

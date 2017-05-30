@@ -35,6 +35,11 @@ static t_list	*find_fd(int fd)
 	static t_list	*master_list;
 	t_list			*tmp;
 
+	if (fd == -42)
+	{
+		purge_everything(&master_list);
+		return (NULL);
+	}
 	tmp = master_list;
 	while (tmp)
 	{
@@ -56,7 +61,7 @@ int				get_next_line(const int fd, char **line)
 	char	*tmp;
 
 	if (fd == -42)
-		purge_everything(&fd_node);
+		find_fd(fd);
 	if (fd < 0 || line == NULL || read(fd, *line, 0) < 0)
 		return (-1);
 	buff = ft_strnew(BUFF_SIZE);

@@ -58,5 +58,5 @@ void			vanish_ant_farm(t_room ***rooms, t_ant ***ants, char ***map)
 	if (rooms)
 		vanish_rooms(rooms);
 	*map = NULL;
-//	get_next_line(-42, NULL);
+	get_next_line(-42, NULL);
 }
