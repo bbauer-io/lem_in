@@ -6,7 +6,7 @@
 /*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 08:44:31 by bbauer            #+#    #+#             */
-/*   Updated: 2017/05/30 07:37:37 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/31 18:18:59 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,19 +97,22 @@ static char		**evaluate_line(t_room ***rooms, t_control *control, char *line,
 {
 	char	**tmp;
 
-	if (*line == '#' && line[1] != '#')
+	if (*line == '#' && line[1] != '#' && !commands)
 		;
-	else if (*line == '#' && line[1] == '#')
+	else if (*line == '#' && line[1] == '#' && !commands)
 	{
 		tmp = commands;
 		commands = ft_tab_add_one(commands, &line[2]);
-		free(tmp);
+		if (tmp)
+			free(tmp);
 	}
 	else if (control->ant_count < 1 && !control->has_rooms
-				&& !control->has_tunnels)
+				&& !control->has_tunnels && !commands)
 		read_ant_count(line, control);
 	else if (ft_strchr(line, ' '))
 		read_room(rooms, line, &commands, control);
+	else if (commands)
+		control->map_has_anomaly = 1;
 	else if (ft_strchr(line, '-'))
 		read_tunnel(*rooms, line, control);
 	else
