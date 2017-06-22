@@ -92,6 +92,8 @@ Lx9-9
 ```
 
 In the output, Ants are numbered in hexadecimal and prefixed with 'Lx'.
+
 "Lx0-3" would be interpreted as "Ant Lx0 moves to room 3".
+
 Each line is one turn. Ants can travel one room per turn.
 
