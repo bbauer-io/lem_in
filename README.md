@@ -38,7 +38,7 @@ Maps look like this:
 Usage:
 ```
 > make
-> ./lem-in < testmap.lemin
+> ./lem-in < testmap
 ```
 
 Output:
